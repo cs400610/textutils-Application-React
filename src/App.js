@@ -1,11 +1,11 @@
 import "./App_a.css";
-import About from './components/About';
+// import About from './components/About';
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
   const radioMode = () => {
@@ -36,7 +36,7 @@ function App() {
   };
   return (
     <>
-    <Router>
+    {/* <Router> */}
       <Navbar
         title="Text-Utils"
         about_text="About TextUtils"
@@ -47,26 +47,25 @@ function App() {
       {/* <Navbar/> */}
       {/* <TextForm name="Hello Guys in React Course!"/> */}
       <Alert
-        alert="Text Utils Application is very Useful Application in which we can operate various types of operations. It has the feature of Dark mode and light mode too. Try Once, You will defenitely Like this app"
         alert={alert}
       />
 
       <div className="container my-3">
-          <Switch>
-            <Route exact path="/About">
-              <About exact heading="About TextUtils"/>
-            </Route>
-            <Route path="/">
+          {/* <Switch> */}
+            {/* <Route exact path="/About"> */}
+              {/* <About exact heading="About TextUtils"/> */}
+            {/* </Route> */}
+            {/* <Route path="/"> */}
               <TextForm
                 name="Enter The Text To Analyze"
                 text1="Write your queries here...!"
                 mode={mode}
                 showAlert={showAlert}
               />
-            </Route>
-          </Switch>
+            {/* </Route> */}
+          {/* </Switch> */}
       </div>
-    </Router>
+    {/* </Router> */}
     </> /*jsx fragments*/
   );
 }
