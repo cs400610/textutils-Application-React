@@ -9,9 +9,9 @@ export default function Navbar(props) {
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
        <div className="container-fluid">
-                <Link className="navbar-brand" to="/">
+                <a className="navbar-brand" href="/">
                     {props.title}
-                </Link>
+                </a>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -30,12 +30,12 @@ export default function Navbar(props) {
                                 Home
                             </a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link className="nav-link" to="/About">
                                 {props.about_text}
                 
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                     <form className="d-flex">
                         <input
