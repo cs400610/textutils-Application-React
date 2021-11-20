@@ -1,14 +1,21 @@
-import "./App_a.css";
-// import About from './components/About';
+import './App_a.css';
+import About from './components/About';
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
 
-// import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
+const removeClassList=()=>{
+  document.body.classList.remove('bg-primary');
+  document.body.classList.remove('bg-danger');
+  document.body.classList.remove('bg-warning');
+}
 function App() {
-  const radioMode = () => {
+  const radioMode = (cls) => {
+    removeClassList();
+    document.body.classList.add('bg-'+cls);
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "grey";
@@ -34,9 +41,10 @@ function App() {
       setAlert(null);
     }, 5000);
   };
+
   return (
     <>
-    {/* <Router> */}
+    <Router>
       <Navbar
         title="Text-Utils"
         about_text="About TextUtils"
@@ -51,23 +59,23 @@ function App() {
       />
 
       <div className="container my-3">
-          {/* <Switch> */}
-            {/* <Route exact path="/About"> */}
-              {/* <About exact heading="About TextUtils"/> */}
-            {/* </Route> */}
-            {/* <Route path="/"> */}
+          <Switch>
+            <Route exact path="/About">
+              <About exact heading="About TextUtils" mode={mode}/>
+            </Route>
+            <Route path="/">
               <TextForm
                 name="Enter The Text To Analyze"
                 text1="Write your queries here...!"
                 mode={mode}
                 showAlert={showAlert}
               />
-            {/* </Route> */}
-          {/* </Switch> */}
+            </Route>
+          </Switch>
       </div>
-    {/* </Router> */}
-    </> /*jsx fragments*/
+    </Router>
+    </>
   );
 }
-export default App;
 
+export default App;
