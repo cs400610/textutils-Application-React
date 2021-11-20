@@ -1,37 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function About(props) {
 
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-    border: "1px solid black",
-  });
+  // const [myStyle, setMyStyle] = useState({
+  //   color: "black",
+  //   backgroundColor: "white",
+  //   border: "1px solid black",
+  // });
 
-  const [btn, setbtn] = useState("Enable Dark Mode");
+  let myStyle={
+    color:props.mode==='dark'?'white':'black',
+    backgroundColor: props.mode==='dark'?'black':'white',
+    border:'2px solid',
+    borderColor:props.mode==='dark'?'grey':'black'
+  }
 
-  const darkClickHandle = () => {
-    console.log("Dark Mode was clicked!!");
-    if (myStyle.color === "black") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-        border: "1px solid azure",
-      });
-      setbtn("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-        border: "1px solid black",
-      });
-      setbtn("Enable Dark Mode");
-    }
-  };
   return (
-    <div className="container my-4" style={myStyle}>
-      <h2>{props.heading}</h2>
-      <div className="accordion" id="accordionExample" style={myStyle}>
+    <div>
+      <h1 className="my-3" style={{color:props.mode==='dark'?'white':'black'}}>{props.heading}</h1>
+      <div className="accordion mb-3" id="accordionExample"style={myStyle}>
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -43,7 +30,7 @@ export default function About(props) {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              Accordion Item #1
+              Analyze your Text
             </button>
           </h2>
           <div
@@ -53,14 +40,7 @@ export default function About(props) {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={myStyle}>
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              Analyzes your way of text quickly and effeciently. It will Analyzeall you words and also shows the read time which will be very helpful for you
             </div>
           </div>
         </div>
@@ -75,7 +55,7 @@ export default function About(props) {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Accordion Item #2
+              Free to use
             </button>
           </h2>
           <div
@@ -85,14 +65,7 @@ export default function About(props) {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style={myStyle}>
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <b>TextUtils</b> is a free character counter tool that provides instant character and word count statistics for a given text.Thus it is suitable for writing text with word/ character limit.
             </div>
           </div>
         </div>
@@ -107,7 +80,7 @@ export default function About(props) {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              Accordion Item #3
+              Browser Compatible
             </button>
           </h2>
           <div
@@ -129,16 +102,6 @@ export default function About(props) {
           </div>
         </div>
       </div>
-      <div className="container my-1">
-        <button
-          type="button"
-          id="dark-btn"
-          className="btn btn-info my-1"
-          onClick={darkClickHandle}
-        >
-          {btn}
-        </button>
-      </div>
-    </div>
+  </div>
   );
 }
