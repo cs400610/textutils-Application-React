@@ -9,9 +9,9 @@ export default function Navbar(props) {
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
        <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     {props.title}
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -26,16 +26,16 @@ export default function Navbar(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/">
+                            <Link className="nav-link" aria-current="page" to="/">
                                 Home
-                            </a>
+                            </Link>
                         </li>
-                        {/* <li className="nav-item">
+                        <li className="nav-item">
                             <Link className="nav-link" to="/About">
                                 {props.about_text}
-                
                             </Link>
-                        </li> */}
+                
+                        </li>
                     </ul>
                     <form className="d-flex">
                         <input
@@ -49,9 +49,15 @@ export default function Navbar(props) {
                         </button>
                     </form>
                 </div>
-            </div>
+           </div>
+           <div className="d-flex">
+               <div className="bg-primary rounded mx-2"style={{height:'30px',width:'35px',cursor:'pointer'}} onClick={()=>{props.radioMode('primary')}}></div>
+               <div className="bg-danger rounded mx-2"style={{height:'30px',width:'35px',cursor:'pointer'}} onClick={()=>{props.radioMode('danger')}}></div>
+               <div className="bg-warning rounded mx-2"style={{height:'30px',width:'35px',cursor:'pointer'}} onClick={()=>{props.radioMode('warning')}}></div>
+
+           </div>
         <div  className={`form-check form-switch text-${props.mode==='light'?'dark':'light'} me-2`}>
-         <input className="form-check-input" type="checkbox" onChange={props.radioMode} role="switch" id="flexSwitchCheckDefault"/>
+         <input className="form-check-input" type="checkbox" onChange={()=>{props.radioMode(null)}} role="switch" id="flexSwitchCheckDefault"/>
          <label id="radioText" className="form-check-label" htmlFor="flexSwitchCheckDefault">EnableDarkMode</label>
         </div>
         </nav>
