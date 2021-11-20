@@ -29,9 +29,8 @@ export default function TextForm(props) {
     }
 
     const copyClickHandle = () =>{
-        var text = document.getElementById("My-Container");
-        text.select();
-        navigator.clipboard.writeText(text.value);
+       
+        navigator.clipboard.writeText(text);
         props.showAlert("Copy Button has been Clicked","success");
 
     }
@@ -45,28 +44,28 @@ export default function TextForm(props) {
     const[text,setText] = useState("");
     return (
         <>
-        <div className="container" style={{color:props.mode==='dark'?'white':'black'}}>
+        <div className="container" style={{color:props.mode==='dark'?'white':'#13466e'}}>
             <h2>{props.name}</h2>
             <div className="mb-3">
                 <label htmlFor="My-Container" className="form-label">{props.text1}</label>
-                <textarea className="form-control "style={{color:props.mode==='dark'?'white':'black',backgroundColor:props.mode==='dark'?'grey':'white'}} id="My-Container" value={text}  rows="5" onChange={handleOnChange}></textarea>
+                <textarea className="form-control "style={{color:props.mode==='dark'?'white':'#13466e',backgroundColor:props.mode==='dark'?'#13466e':'white'}} id="My-Container" value={text}  rows="5" onChange={handleOnChange}></textarea>
             </div>
             <div className="btn-container">
-            <button className="btn btn-danger mx-1" onClick={upClickHandle}>Convert to UpperCase</button>
-            <button className="btn btn-danger" onClick={downClickHandle}>Convert to Lowercase</button>
-            <button className="btn btn-danger mx-1" id="clear_button" onClick={clearClickHandle}>Clear Text</button>
-            <button className="btn btn-danger mx-1" id="copy_button" onClick={copyClickHandle}>Copy Text</button>
-            <button className="btn btn-danger mx-1" id="remove_spaces_button" onClick={removeSpaceClickHandle}>Remove Extra Spaces</button>
+            <button className="btn btn-danger mx-1 my-1" disabled={text.length===0}onClick={upClickHandle}>Convert to UpperCase</button>
+            <button className="btn btn-danger" disabled={text.length===0} onClick={downClickHandle}>Convert to Lowercase</button>
+            <button className="btn btn-danger mx-1 my-1" id="clear_button"disabled={text.length===0} onClick={clearClickHandle}>Clear Text</button>
+            <button className="btn btn-danger mx-1 my-1" id="copy_button"disabled={text.length===0} onClick={copyClickHandle}>Copy Text</button>
+            <button className="btn btn-danger mx-1 my-1" id="remove_spaces_button" disabled={text.length===0}onClick={removeSpaceClickHandle}>Remove Extra Spaces</button>
             </div>
         </div>
 
-        <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
+        <div className="container my-3" style={{color:props.mode==='dark'?'white':'#13466e'}}>
             <h3><u> Text-Summary </u></h3>
-            <p>Text contain : <br/>{text.length} <b>Characters</b> <br/>{text.length === 0 ? 0:text.split(" ").length} <b>Words</b></p>
-            <p>Want {0.08 * text.split(" ").length} Minutes To Read This Words</p>
+            <p>Text contain : <br/>{text.length} <b>Characters</b> <br/>{text.split(/\s+/).filter((elem)=>{return elem.length !== 0}).length}<b> Words</b></p>
+            <p>Want {0.08 * text.split(" ").filter((elem)=>{return elem.length!==0}).length} Minutes To Read This Words</p>
 
             <h4>PREVIEW TEXT:</h4>
-            <p>{text.length>0?text:"Write Something in the text-area to PREVIEW...."}</p>
+            <p>{text.length>0?text:"Write Something in the text-area to PREVIEW the text...."}</p>
         </div>
         </>
     )
